@@ -36,9 +36,19 @@ define(["localstorage", "./local/put", "./local/delete"], function(LocalStorage,
             return tmpData;
         },
 
+        getUpdatedTime: function()
+        {
+            return new LocalStorage().get(this.getResourceTime());
+        },
+
         getOrderResourceName: function()
         {
             return this.mapper.resourceName + "/ORDER";
+        },
+
+        getResourceTime: function()
+        {
+            return this.mapper.resourceName + "/TIME";
         },
 
         getOneBy: function(key, value)
@@ -64,6 +74,7 @@ define(["localstorage", "./local/put", "./local/delete"], function(LocalStorage,
 
             new LocalStorage().set(this.mapper.resourceName, dataTmp);
             new LocalStorage().set(this.getOrderResourceName(), orderTmp);
+            new LocalStorage().set(this.getResourceTime(), $.now());
         },
 
         put: function(newData)

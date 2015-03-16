@@ -12,6 +12,11 @@ define(["./adapters/remote", "./adapters/local", "./adapters/local-collection", 
             return this.getAdapterInstance().count();
         },
 
+        getUpdatedTime: function()
+        {
+            return this.getAdapterInstance().getUpdatedTime();
+        },
+
         delete: function(identifier, callback)
         {
             var adapter = this.getAdapterInstance(this.options);
