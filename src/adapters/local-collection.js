@@ -8,6 +8,27 @@ define(["localstorage", "./local/put"],
 
     Local.prototype = {
 
+        delete: function(identifier)
+        {
+            identifier == undefined ?
+                new LocalStorage().remove(this.resourceName):
+                this.deleteOne(identifier);
+        },
+
+        deleteOne: function(identifier)
+        {
+            var data = this.get();
+            var key = this.getKey(identifier);
+            var tmpData = [];
+            for (i = 0; i < data.length; i++) {
+                if(data[i][key] != identifier[key]){
+                    tmpData.push(data[i]);
+                }
+
+            }
+            this.post(tmpData);
+        },
+
         count: function()
         {
             var data = this.get();
@@ -63,6 +84,13 @@ define(["localstorage", "./local/put"],
             return null;
         },
 
+        getKey: function(identifier )
+        {
+            for (var key in identifier) {
+                return key;
+            }
+        },
+
         post: function(data)
         {
             var dataTmp = {};
@@ -78,37 +106,21 @@ define(["localstorage", "./local/put"],
             new LocalStorage().set(this.getResourceTime(), $.now());
         },
 
-        put: function(newData)
+        put: function(newData, identifier)
         {
-            new Put(this.mapper.resourceName, newData);
-        },
 
-        delete: function(identifier)
-        {
-            if(identifier != undefined){
-                this.deleteOne(identifier);
-            }
-        },
-
-        getKey: function(identifier )
-        {
-            for (var key in identifier) {
-                return key;
-            }
-        },
-
-        deleteOne: function(identifier)
-        {
             var data = this.get();
+            var tmpTasks = [];
             var key = this.getKey(identifier);
-            var tmpData = [];
             for (i = 0; i < data.length; i++) {
-                if(data[i][key] != identifier[key]){
-                    tmpData.push(data[i]);
+                if(data[i][key] == newData[key]){
+                    tmpTasks.push(newData);
                 }
-
+                else{
+                    tmpTasks.push(data[i]);
+                }
             }
-            this.post(tmpData);
+            this.post(tmpTasks);
         }
 
     };
