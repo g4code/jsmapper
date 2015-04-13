@@ -1,5 +1,6 @@
 ;
-define(["localstorage", "./local/put", "./local/delete"], function(LocalStorage, Put, Delete){
+define(["localstorage", "./local/put"],
+    function(LocalStorage, Put){
 
     var Local = function(mapper){
         this.mapper = mapper;
@@ -84,8 +85,30 @@ define(["localstorage", "./local/put", "./local/delete"], function(LocalStorage,
 
         delete: function(identifier)
         {
-            new Delete(this.mapper.resourceName, identifier);
-            new Delete(this.getOrderResourceName(), identifier);
+            if(identifier != undefined){
+                this.deleteOne(identifier);
+            }
+        },
+
+        getKey: function(identifier )
+        {
+            for (var key in identifier) {
+                return key;
+            }
+        },
+
+        deleteOne: function(identifier)
+        {
+            var data = this.get();
+            var key = this.getKey(identifier);
+            var tmpData = [];
+            for (i = 0; i < data.length; i++) {
+                if(data[i][key] != identifier[key]){
+                    tmpData.push(data[i]);
+                }
+
+            }
+            this.post(tmpData);
         }
 
     };
