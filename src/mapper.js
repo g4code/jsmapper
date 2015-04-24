@@ -17,10 +17,10 @@ define(["./adapters/remote", "./adapters/local", "./adapters/local-collection", 
             return this.getAdapterInstance().getUpdatedTime();
         },
 
-        delete: function(identifier, callback)
+        remove: function(identifier, callback)
         {
             var adapter = this.getAdapterInstance(this.options);
-            adapter.delete(identifier, callback);
+            adapter.remove(identifier, callback);
         },
 
         get: function(params, callback)

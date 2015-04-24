@@ -64,17 +64,18 @@ define(["localstorage", "./local/put", "./local/delete"], function(LocalStorage,
 
         post: function(data)
         {
-            var dataTmp = {};
-            var orderTmp = [];
-            var self = this;
-            $.each(data, function(key, value){
-                orderTmp[key] = self.mapper.getIdentIdentifier(value);
-                dataTmp[self.mapper.getIdentIdentifier(value)] = value;
-            });
-
-            new LocalStorage().set(this.mapper.resourceName, dataTmp);
-            new LocalStorage().set(this.getOrderResourceName(), orderTmp);
-            new LocalStorage().set(this.getResourceTime(), $.now());
+            if(data != undefined){
+                var dataTmp = {};
+                var orderTmp = [];
+                var self = this;
+                $.each(data, function(key, value){
+                    orderTmp[key] = self.mapper.getIdentIdentifier(value);
+                    dataTmp[self.mapper.getIdentIdentifier(value)] = value;
+                });
+                new LocalStorage().set(this.mapper.resourceName, dataTmp);
+                new LocalStorage().set(this.getOrderResourceName(), orderTmp);
+                new LocalStorage().set(this.getResourceTime(), $.now());
+            }
         },
 
         put: function(newData)
@@ -82,7 +83,7 @@ define(["localstorage", "./local/put", "./local/delete"], function(LocalStorage,
             new Put(this.mapper.resourceName, newData);
         },
 
-        delete: function(identifier)
+        remove: function(identifier)
         {
             new Delete(this.mapper.resourceName, identifier);
             new Delete(this.getOrderResourceName(), identifier);

@@ -22,7 +22,7 @@ define(["localstorage", "./local/put", "./local/delete"], function(LocalStorage,
             new Put(this.resourceName, newData);
         },
 
-        delete: function(identifier)
+        remove: function(identifier)
         {
             new Delete(this.resourceName, identifier);
         }

@@ -7,7 +7,7 @@ define(["http"], function(Http){
 
     Remote.prototype = {
 
-        delete: function(params, callback)
+        remove: function(params, callback)
         {
             var data = {
                 url  : this.resourceName,
