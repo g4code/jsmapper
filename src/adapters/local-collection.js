@@ -54,9 +54,11 @@ define(["localstorage", "./local/put", "./local/delete"], function(LocalStorage,
         getOneBy: function(key, value)
         {
             var source = this.get();
-            for (var i = 0; i < source.length; i++) {
-                if (source[i][key] == value) {
-                    return source[i];
+            if(source != null){
+                for (var i = 0; i < source.length; i++) {
+                    if (source[i][key] == value) {
+                        return source[i];
+                    }
                 }
             }
             return null;
