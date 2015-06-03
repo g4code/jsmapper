@@ -15,7 +15,7 @@ define(["http"], function(Http){
                 data : params
             }
 
-            new Http(data).success(callback);
+            return new Http(data).success(callback);
         },
 
         get: function(params, callback)
@@ -40,12 +40,18 @@ define(["http"], function(Http){
                 data : params
             }
 
-            new Http(data).success(callback);
+            return new Http(data).success(callback);
         },
 
-        put: function(callback)
+        put: function(params, callback)
         {
+            var data = {
+                url  : this.resourceName,
+                type : "PUT",
+                data : params
+            }
 
+            return new Http(data).success(callback);
         }
     };
 
