@@ -24,7 +24,7 @@ define(["localstorage"], function(LocalStorage){
 
         object: function(newData)
         {
-            var data = $.extend({}, newData, this.getFromLocal());
+            var data = $.extend({}, this.getFromLocal(), newData);
             if(!$.isEmptyObject(data)){
                 new LocalStorage().set(this.resourceName, data);
             }
