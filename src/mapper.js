@@ -39,11 +39,20 @@ define(["./adapters/remote", "./adapters/local", "./adapters/local-collection", 
         {
             switch(this.adapter) {
                 case "local":
+                    this.setLStorageKeyPrefix();
                     return new Local(this.resourceName);
                 case "localCollection":
+                    this.setLStorageKeyPrefix();
                     return new LocalCollection(this);
                 case "remote":
                     return new Remote(this.resourceName);
+            }
+        },
+
+        setLStorageKeyPrefix: function()
+        {
+            if(this.setLStorageKey != undefined){
+                this.resourceName = this.setLStorageKey() + this.resourceName;
             }
         },
 
