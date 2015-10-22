@@ -20,7 +20,7 @@ define(["./adapters/remote", "./adapters/local", "./adapters/local-collection", 
         remove: function(identifier, callback)
         {
             var adapter = this.getAdapterInstance(this.options);
-            adapter.remove(identifier, callback);
+            return adapter.remove(identifier, callback);
         },
 
         get: function(params, callback)
@@ -59,13 +59,13 @@ define(["./adapters/remote", "./adapters/local", "./adapters/local-collection", 
         post: function(params, callback)
         {
             var adapter = this.getAdapterInstance();
-            adapter.post(params, callback);
+            return adapter.post(params, callback);
         },
 
         put: function(params, callback)
         {
             var adapter = this.getAdapterInstance();
-            adapter.put(params, callback);
+            return adapter.put(params, callback);
         }
 
     };
