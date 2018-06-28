@@ -1,0 +1,26 @@
+{
+  "name": "jsmapper",
+  "version": "1.0.0",
+  "description": "jsmapper",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/g4code/jsmapper.git"
+  },
+  "keywords": [
+    "jsmapper"
+  ],
+  "author": "G4 Code <office@g4code.com>",
+  "maintainers": [
+    "Drasko Gomboc <drasko.gomboc@gmail.com>",
+    "Zeljko Simic <zeljkosbgd@gmail.com>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/g4code/jsmapper/issues"
+  },
+  "homepage": "https://github.com/g4code/jsmapper#readme"
+}
